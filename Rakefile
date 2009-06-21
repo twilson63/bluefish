@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "bluefish"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Simple Document Data Driver}
     gem.email = "tom@jackhq.com"
     gem.homepage = "http://github.com/twilson63/bluefish"
     gem.authors = ["Tom Wilson"]
