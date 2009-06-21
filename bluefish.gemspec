@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "VERSION.yml",
+     "bluefish.gemspec",
      "lib/bluefish.rb",
      "spec/bluefish_spec.rb",
      "spec/spec_helper.rb"
