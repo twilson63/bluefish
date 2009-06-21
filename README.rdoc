@@ -1,6 +1,31 @@
 = bluefish
 
-Description goes here.
+Bluefish is a simple document model system, that allows the storage and retrieval
+of dynamic models and hashes.  The purpose of the library is to create a data model layer that is schema-less.
+
+Create DataStore
+
+Bluefish::Base.database('sea.sqlite3')
+
+Create Model
+
+class Person < Bluefish::Base
+
+end
+
+p = Person.new(0, :first_name => "John", :last_name => "Doe")
+
+p.save
+
+p.destory
+
+Person.find_all
+#=> [Person]
+
+Person.find(1)
+#=> Person
+
+
 
 == Copyright
 
