@@ -15,10 +15,10 @@ module Bluefish
     
     def save
       if self.id == 0
-        self.id = self.class.count_all + 1
-        self.class.sql('insert into entries values (?, ?, ?, ?, ?)', self.class.name.pluralize, self.id, self.body.to_yaml, Time.now, Time.now)
+        @id = self.class.count + 1
+        self.class.sql('insert into entries values (?, ?, ?, ?, ?)', self.class.name.pluralize, @id, self.body.to_yaml, Time.now, Time.now)
       else
-        self.class.sql('update entries set body = ?, updated_at = ? where type = ? and id = ?', self.body.to_yaml, Time.now, self.class.name.pluralize, self.id)
+        self.class.sql('update entries set body = ?, updated_at = ? where type = ? and id = ?', self.body.to_yaml, Time.now, self.class.name.pluralize, @id)
       end
     end
     
@@ -42,18 +42,26 @@ module Bluefish
       []
     end
     
-    def self.count_all
+    def self.count
       self.sql('select count(*) from entries where type = ?', name.pluralize)[0][0].to_i
     end
        
     def self.database(name)
       @@db = SQLite3::Database.new( name )
       @@db.execute('create table if not exists entries (type text, id integer, body text, created_at datetime, updated_at datetime)')
+      true
+    rescue
+      false
     end
     
     def self.sql(sql, *args)
       @@db.execute(sql, *args)
     end
+    
+    def self.delete_all
+      sql('delete from entries where type = ?', name.pluralize)
+    end
+    
   
   end
 end
