@@ -80,6 +80,7 @@ describe "Bluefish" do
     
     Person.find_all.each do |row|
       row.body[:last_name].should == "People"
+      (row.body[:first_name] == "Johnny" or row.body[:first_name] == "Jimmy").should be_true
     end 
     
     Person.delete_all
